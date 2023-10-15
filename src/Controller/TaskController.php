@@ -77,5 +77,11 @@ class TaskController extends AbstractController
         return new Response('OK', 200);
     }
 
-    #[Route('/')]
+    #[Route('/tasks/{id}', methods: ['DELETE'])]
+    public function delete(EntityManagerInterface $entityManager, Task $task): Response {
+        $entityManager->remove($task);
+        $entityManager->flush();
+
+        return new Response('ok', 200);
+    }
 }
