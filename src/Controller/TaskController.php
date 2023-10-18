@@ -54,7 +54,11 @@ class TaskController extends AbstractController
             },
             $tasks
         );
-
+        // [
+        //  ['id': 1, 'task': 'task', 'dueDate': 'date'],
+        //  ['id': 1, 'task': 'task', 'dueDate': 'date'],
+        //  ['id': 1, 'task': 'task', 'dueDate': 'date']
+        // ]
         return new JsonResponse($tasks2, 200);
     }
 
@@ -64,7 +68,7 @@ class TaskController extends AbstractController
         return new JsonResponse($response, 200);
     }
 
-    #[Route('/tasks/{id}', methods: ['POST'])]
+    #[Route('/tasks/{id}', methods: ['PUT'])]
     public function update(EntityManagerInterface $entityManager, Task $task, Request $request): Response {
         $newTask = $request->getPayload();
 
